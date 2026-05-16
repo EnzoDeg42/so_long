@@ -6,7 +6,7 @@
 /*   By: edegraev <edegraev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:55:28 by edegraev          #+#    #+#             */
-/*   Updated: 2023/12/31 14:12:29 by edegraev         ###   ########.fr       */
+/*   Updated: 2026/05/16 14:37:03 by edegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	update_player_position(t_mlx *game, int dx, int dy)
 	game->player.pos_x += dx * game->tile_size;
 	game->player.pos_y += dy * game->tile_size;
 	game->player_step++;
-	ft_printf("step: %ld\n", game->player_step);
+	ft_printf("step: %d\n", game->player_step);
 }
 
 size_t	player_move(t_mlx *game, int dx, int dy)
