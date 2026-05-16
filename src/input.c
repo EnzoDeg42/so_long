@@ -14,15 +14,15 @@
 
 int	key_press(int keycode, t_mlx *game)
 {
-	if (keycode == 65307)
+	if (keycode == KEY_ESC)
 		quit(game);
-	if (keycode == 100 || keycode == 65363)
+	if (keycode == KEY_D || keycode == KEY_RIGHT)
 		player_move(game, 1, 0);
-	if (keycode == 97 || keycode == 65361)
+	if (keycode == KEY_A || keycode == KEY_LEFT)
 		player_move(game, -1, 0);
-	if (keycode == 115 || keycode == 65364)
+	if (keycode == KEY_S || keycode == KEY_DOWN)
 		player_move(game, 0, 1);
-	if (keycode == 119 || keycode == 65362)
+	if (keycode == KEY_W || keycode == KEY_UP)
 		player_move(game, 0, -1);
 	update(game);
 	return (0);
@@ -33,12 +33,12 @@ int	mouse_press(int button, int x, int y, t_mlx *game)
 	(void)x;
 	(void)y;
 	if (button == 1)
-		key_press(97, game);
+		key_press(KEY_A, game);
 	if (button == 3)
-		key_press(100, game);
+		key_press(KEY_D, game);
 	if (button == 4)
-		key_press(119, game);
+		key_press(KEY_W, game);
 	if (button == 5)
-		key_press(115, game);
+		key_press(KEY_S, game);
 	return (0);
 }

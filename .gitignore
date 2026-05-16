@@ -4,3 +4,4 @@ so_long
 *.out
 # .vscode
 minilibx-linux/*
+minilibx-mac/*

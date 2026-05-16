@@ -12,10 +12,23 @@
 
 NAME = so_long
 SRC = src/closed.c src/ft_itoa.c src/ft_strcmp.c src/input.c src/map_extra.c src/path.c src/tile.c src/error.c src/ft_memset.c src/game.c src/map.c src/move.c src/so_long.c
-OBJ = $(SRC:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -lXext -lX11 -lm -lbsd
+
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Darwin)
+	MLX_DIR = minilibx-mac
+	MLX_LIB = $(MLX_DIR)/libmlx.a
+	LDFLAGS = -framework OpenGL -framework AppKit
+	SRC += src/mlx_destroy_display.c
+else
+	MLX_DIR = minilibx-linux
+	MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
+	LDFLAGS = -lXext -lX11 -lm -lbsd
+endif
+
+OBJ = $(SRC:.c=.o)
 
 %.o: %.c
 	$(CC) -c $< -o $@ -I./include $(CFLAGS)
@@ -23,19 +36,19 @@ LDFLAGS = -lXext -lX11 -lm -lbsd
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(MAKE) -C minilibx-linux
+	$(MAKE) -C $(MLX_DIR)
 	$(MAKE) -C ft_printf
-	$(CC) $(OBJ) minilibx-linux/libmlx_Linux.a ft_printf/libftprintf.a -L./minilibx-linux $(LDFLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(MLX_LIB) ft_printf/libftprintf.a -L./$(MLX_DIR) $(LDFLAGS) -o $(NAME)
 
 clean:
-	rm -rf $(OBJ) ft_printf/*.o minilibx-linux/*.o
+	rm -rf $(OBJ) ft_printf/*.o $(MLX_DIR)/*.o
 	$(MAKE) -C ft_printf clean
-	$(MAKE) -C minilibx-linux clean
+	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
-	rm -rf $(OBJ) $(NAME) ft_printf/libftprintf.a minilibx-linux/libmlx_Linux.a minilibx-linux/libmlx.a
+	rm -rf $(OBJ) $(NAME) ft_printf/libftprintf.a $(MLX_DIR)/libmlx*.a
 	$(MAKE) -C ft_printf fclean
-	$(MAKE) -C minilibx-linux clean
+	$(MAKE) -C $(MLX_DIR) clean
 
 norm:
 	norminette $(SRC) include/so_long.h

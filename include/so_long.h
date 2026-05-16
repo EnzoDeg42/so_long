@@ -6,7 +6,7 @@
 /*   By: edegraev <edegraev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:04:01 by edegraev          #+#    #+#             */
-/*   Updated: 2024/01/02 14:38:44 by edegraev         ###   ########.fr       */
+/*   Updated: 2026/05/16 14:25:31 by edegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,35 @@
 # include <unistd.h>
 # include <string.h>
 
-# include "../minilibx-linux/mlx.h"
+# ifdef __APPLE__
+#  include "../minilibx-mac/mlx.h"
+# else
+#  include "../minilibx-linux/mlx.h"
+# endif
 # include "../ft_printf/include/ft_printf.h"
 # include "../ft_printf/include/libft.h"
+
+# ifdef __APPLE__
+#  define KEY_ESC 53
+#  define KEY_W 13
+#  define KEY_A 0
+#  define KEY_S 1
+#  define KEY_D 2
+#  define KEY_UP 126
+#  define KEY_DOWN 125
+#  define KEY_LEFT 123
+#  define KEY_RIGHT 124
+# else
+#  define KEY_ESC 65307
+#  define KEY_W 119
+#  define KEY_A 97
+#  define KEY_S 115
+#  define KEY_D 100
+#  define KEY_UP 65362
+#  define KEY_DOWN 65364
+#  define KEY_LEFT 65361
+#  define KEY_RIGHT 65363
+# endif
 
 typedef struct s_data
 {
@@ -109,5 +135,8 @@ int		main(int argc, char **argv);
 // tile.c
 t_data	*get_tile(t_mlx *game, size_t x, size_t y);
 void	set_empty_tile(t_mlx *game, size_t x, size_t y, char type);
+
+// mlx_destroy_display.c
+int		mlx_destroy_display(void *mlx_ptr);
 
 #endif
