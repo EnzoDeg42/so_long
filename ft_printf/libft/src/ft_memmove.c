@@ -6,7 +6,7 @@
 /*   By: edegraev <edegraev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:41:15 by edegraev          #+#    #+#             */
-/*   Updated: 2023/12/21 20:39:38 by edegraev         ###   ########.fr       */
+/*   Updated: 2026/05/16 14:11:46 by edegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	if (d < s)
 		ft_memcpy(d, s, n);
 	else
-	{	
+	{
 		while (n > 0)
 		{
 			d[n - 1] = s[n - 1];

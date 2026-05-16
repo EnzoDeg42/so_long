@@ -6,7 +6,7 @@
 /*   By: edegraev <edegraev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 21:31:12 by edegraev          #+#    #+#             */
-/*   Updated: 2023/12/22 21:05:49 by edegraev         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:27:22 by edegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,6 @@ int	ft_printf(const char *str, ...)
 		{
 			print_len += handle_printf_specifier(str[i + 1], args);
 			i += 2;
-			continue ;
-		}
-		else if (str[i] == '%' && str[i + 1] == 'l' && str[i + 2] == 'd')
-		{
-			print_len += print_int(va_arg(args, long));
-			i += 3;
 			continue ;
 		}
 		print_len += print_char(str[i]);

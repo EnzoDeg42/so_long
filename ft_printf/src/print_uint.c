@@ -6,7 +6,7 @@
 /*   By: edegraev <edegraev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:05:43 by edegraev          #+#    #+#             */
-/*   Updated: 2023/11/27 11:08:05 by edegraev         ###   ########.fr       */
+/*   Updated: 2026/05/16 14:14:59 by edegraev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putunbr_fd(unsigned int n, int fd, int *len)
 	char	digit;
 
 	if (n <= 9)
-	{		
+	{
 		digit = n + '0';
 		(*len) += print_char(digit);
 	}
